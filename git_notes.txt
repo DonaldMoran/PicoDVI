@@ -1,0 +1,44 @@
+So as I work and make changes all I have to do is go to my local repo and enter: git push origin dev
+Yes, but with a few important nuances! Here's the complete, precise workflow for your situation:
+
+Correct Workflow for dev Branch
+First, stage and commit changes locally:
+
+bash
+git checkout dev               # Ensure you're on dev branch
+git add .                     # Stage all changes
+git commit -m "Your message"  # Commit locally
+Push to your fork:
+
+bash
+git push origin dev           # Push commits to YOUR fork's dev branch
+Critical Safety Checks
+Always verify the remote first:
+
+bash
+git remote -v
+Must show:
+
+text
+origin  git@github.com:DonaldMoran/PicoDVI.git (fetch)
+origin  git@github.com:DonaldMoran/PicoDVI.git (push)
+If GitHub shows "unmerged commits" after pushing:
+
+This is normal - it just means your dev branch has commits not in main
+
+You can safely ignore this unless you specifically want to merge to main
+
+When You Need More Than Just Push
+Scenario	Command
+When remote has new changes	git pull --rebase origin dev then git push
+After force-pushing	git push -f origin dev (use sparingly)
+To create a PR in YOUR fork	Go to: https://github.com/DonaldMoran/PicoDVI/compare/main...dev
+Best Practices
+Never push directly to Wren6991/PicoDVI
+
+Regularly sync with upstream (optional but recommended):
+
+bash
+git fetch upstream
+git rebase upstream/main  # Updates your dev branch with original repo
+Your current approach is correct - just git push origin dev is sufficient for daily work. The GitHub UI messages about unmerged commits are informational, not requiring action. Would you like me to explain how to set up automatic sync with the original repo?
